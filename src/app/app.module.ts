@@ -7,6 +7,7 @@ import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {FindAgentComponent} from './agent/find-agent/find-agent.component';
 import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     CoreModule
   ],
   providers: [],

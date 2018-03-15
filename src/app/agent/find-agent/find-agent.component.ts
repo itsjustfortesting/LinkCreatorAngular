@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-find-agent',
@@ -6,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./find-agent.component.css']
 })
 export class FindAgentComponent implements OnInit {
+  defaultIdType = 'ag';
+  @ViewChild('findAgentForm') findAgentForm: NgForm;
 
   constructor() {
   }
@@ -13,4 +16,8 @@ export class FindAgentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmitFindAgent() {
+    console.log(this.findAgentForm.value.idvalue);
+    console.log(this.findAgentForm.value.idtype);
+  }
 }
