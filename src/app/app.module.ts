@@ -9,15 +9,16 @@ import {FindAgentComponent} from './agent/find-agent/find-agent.component';
 import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
 import {FormsModule} from '@angular/forms';
 import {AgentService} from './agent/agent.service';
-import {LinksComponent} from './links/links.component';
-
+import {LinkListComponent} from './link-list/link-list.component';
+import {LinkComponent} from './link-list/link/link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FindAgentComponent,
     AgentInfoComponent,
-    LinksComponent
+    LinkListComponent,
+    LinkComponent
   ],
   imports: [
     BrowserModule,

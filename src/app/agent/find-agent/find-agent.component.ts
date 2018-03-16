@@ -20,11 +20,6 @@ export class FindAgentComponent implements OnInit {
   }
 
   onSubmitFindAgent() {
-    console.log(this.findAgentForm.value.idvalue);
-    console.log(this.findAgentForm.value.idtype);
-  }
-
-  onFake() {
     const test: Agent = new Agent('Test agent', '123', 1798173277, 'www.test.pl');
     this.agentService.setActiveAgent(test);
     this.router.navigate(['/agent-info']);
