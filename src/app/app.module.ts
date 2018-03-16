@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {FindAgentComponent} from './agent/find-agent/find-agent.component';
 import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
 import {FormsModule} from '@angular/forms';
+import {AgentService} from './agent/agent.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [AgentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
