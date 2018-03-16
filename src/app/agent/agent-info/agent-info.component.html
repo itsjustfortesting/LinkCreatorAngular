@@ -41,7 +41,7 @@
             <p class="media-body mb-0 small lh-125">
               <strong class="d-block text-gray-dark">Portal code:</strong>
               <input class="form-control" type="text" name="portalCode" id="portalCode"
-                     [ngModel]="agent.portalCode" required #portalCode="ngModel"
+                     [ngModel]="portalCodeValue" required #portalCode="ngModel"
                      [ngClass]="{'error': !portalCode.valid && portalCode.touched}" placeholder="field is required">
             </p>
           </div>
@@ -49,4 +49,7 @@
       </div>
     </div>
   </form>
+  <app-link-list></app-link-list>
 </ng-template>
+
+

@@ -1,6 +1,8 @@
 import {Agent} from './agent.model';
 import {Subject} from 'rxjs/Subject';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class AgentService {
   agentChanged = new Subject<Agent>();
   private activeAgent: Agent;

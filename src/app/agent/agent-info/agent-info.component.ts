@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class AgentInfoComponent implements OnInit, OnDestroy {
   agent: Agent;
   agentSubscription: Subscription;
+  portalCodeValue = '';
 
   constructor(private agentService: AgentService) {
   }
@@ -19,9 +20,13 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
     this.agentSubscription = this.agentService.agentChanged.subscribe(
       (agent: Agent) => {
         this.agent = agent;
+        this.portalCodeValue = agent.portalCode;
       }
     );
     this.agent = this.agentService.getActiveAgent();
+    if (this.agentService.getActiveAgent() != null) {
+      this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
+    }
   }
 
   ngOnDestroy() {
