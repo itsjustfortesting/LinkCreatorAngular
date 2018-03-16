@@ -1,13 +1,13 @@
 export class Agent {
   public name: string;
-  public agsymbol: string;
-  public taxnumber: number;
+  public agSymbol: string;
+  public taxNumber: number;
   public portalCode: string;
 
   constructor(name: string, agsymbol: string, taxnumber: number, portalCode: string) {
     this.name = name;
-    this.agsymbol = agsymbol;
-    this.taxnumber = taxnumber;
+    this.agSymbol = agsymbol;
+    this.taxNumber = taxnumber;
     this.portalCode = portalCode;
   }
 }

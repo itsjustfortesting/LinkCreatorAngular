@@ -23,32 +23,14 @@
         <p class="media-body pb-0 mb-0 small" style="color: red" *ngIf="!idValue.valid && idValue.touched">
           You can type only letters and numbers
         </p>
-        <div class="media text-muted pt-4">
+        <div class="media text-muted pt-4 col-sm-12">
           <p class="media-body pb-0 mb-0 small lh-125 col-sm-7">
             <input type="submit" class="btn btn-primary" value="Search" [disabled]="!findAgentForm.valid">
             <input type="reset" class="btn btn-secondary" value="Clear">
+            <input type="button" class="btn btn-secondary" value="Fake" (click)="onFake()">
           </p>
         </div>
       </form>
     </div>
   </div>
-  <!--<ng-template [ngIf]="showHelp || (!idValue.valid && idValue.touched)">-->
-  <!--<div class="col-sm-5">-->
-  <!--<div class="my-3 p-3 bg-white rounded box-shadow border">-->
-  <!--<h5 class="border-bottom border-gray pb-2 mb-0">Help</h5>-->
-  <!--<div class="media text-muted pt-3">-->
-  <!--<p class="media-body mb-0 small lh-125">-->
-  <!--<strong class="d-block text-gray-dark">Ag symbol</strong>-->
-  <!--Unique agent's number.-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</ng-template>-->
 </div>
-
-
-
-
-
-

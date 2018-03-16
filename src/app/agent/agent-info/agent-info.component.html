@@ -1,8 +1,8 @@
-<ng-template [ngIf]="!agentFound">
+<ng-template [ngIf]="agent == null">
   <div class="row justify-content-center">
     <div class="col-sm-5">
       <div class="my-3 p-3 bg-white rounded box-shadow border">
-        <h5 class="border-bottom border-gray pb-2 mb-0">Agent's info</h5>
+        <h4 class="border-bottom border-gray pb-2 mb-0">Agent's info</h4>
         <div class="media text-muted pt-3">
           <p class="media-body mb-0 small lh-125">
             <strong class="d-block text-gray-dark">Error</strong>
@@ -12,4 +12,41 @@
       </div>
     </div>
   </div>
+</ng-template>
+<ng-template [ngIf]="agent != null">
+  <form (submit)="ble()" #agentsInfoForm="ngForm">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <div class="my-3 p-3 bg-white rounded box-shadow border">
+          <h4 class="border-bottom border-gray pb-2 mb-0">Agent's info</h4>
+          <div class="media text-muted pt-3">
+            <p class="media-body mb-0 small lh-125">
+              <strong class="d-block text-gray-dark">Name:</strong>
+              {{agent.name}}
+            </p>
+          </div>
+          <div class="media text-muted pt-1">
+            <p class="media-body mb-0 small lh-125">
+              <strong class="d-block text-gray-dark">Agent symbol:</strong>
+              {{agent.agSymbol}}
+            </p>
+          </div>
+          <div class="media text-muted pt-1">
+            <p class="media-body mb-0 small lh-125">
+              <strong class="d-block text-gray-dark">Tax number:</strong>
+              {{agent.taxNumber}}
+            </p>
+          </div>
+          <div class="media text-muted pt-1">
+            <p class="media-body mb-0 small lh-125">
+              <strong class="d-block text-gray-dark">Portal code:</strong>
+              <input class="form-control" type="text" name="portalCode" id="portalCode"
+                     [ngModel]="agent.portalCode" required #portalCode="ngModel"
+                     [ngClass]="{'error': !portalCode.valid && portalCode.touched}" placeholder="field is required">
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </ng-template>
