@@ -32,4 +32,8 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.agentSubscription.unsubscribe();
   }
+
+  onChangePortalCode(value: string) {
+    this.agentService.setPortalCodeNow(value);
+  }
 }
