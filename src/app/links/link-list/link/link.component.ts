@@ -3,6 +3,7 @@ import {LinkService} from '../../link.service';
 import {Link} from '../../link.model';
 import {AgentService} from '../../../agent/agent.service';
 import {Subscription} from 'rxjs/Subscription';
+import {Agent} from '../../../agent/agent.model';
 
 @Component({
   selector: 'app-link',
@@ -13,22 +14,30 @@ export class LinkComponent implements OnInit, OnDestroy {
   @Input() linkId;
   link: Link;
   portalCodeChangedSubscription: Subscription;
-  portalCode = '';
+  finalUrl = '';
 
   constructor(private linkService: LinkService, private agentService: AgentService) {
   }
 
   ngOnInit() {
+    this.link = this.linkService.getLink(this.linkId);
     this.portalCodeChangedSubscription = this.agentService.portalCodeChanged.subscribe(
       (portalCode: string) => {
-        this.portalCode = portalCode;
+        this.finalUrl = this.resolveUrl(this.link.url, portalCode, this.agentService.getActiveAgent());
       }
     );
-    this.link = this.linkService.getLink(this.linkId);
-    this.portalCode = this.agentService.getActiveAgent().portalCode;
+    this.finalUrl = this.resolveUrl(this.link.url, this.agentService.getActiveAgent().portalCode, this.agentService.getActiveAgent());
   }
 
   ngOnDestroy(): void {
     this.portalCodeChangedSubscription.unsubscribe();
+  }
+
+  resolveUrl(url: string, portalCode: string, agent: Agent) {
+    let finalUrl = url;
+    finalUrl = finalUrl.replace('<#portalCode#>', portalCode);
+    finalUrl = finalUrl.replace('<#agSymbol#>', agent.agSymbol);
+    finalUrl = finalUrl.replace('<#taxNumber#>', agent.taxNumber.toString());
+    return finalUrl;
   }
 }

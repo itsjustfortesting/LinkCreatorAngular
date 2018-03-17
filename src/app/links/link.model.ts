@@ -1,9 +1,11 @@
 export class Link {
   public lob: string;
-  public link: string;
+  public variant: string;
+  public url: string;
 
-  constructor(lob: string, link: string) {
+  constructor(lob: string, variant: string, link: string) {
     this.lob = lob;
-    this.link = link;
+    this.variant = variant;
+    this.url = link;
   }
 }

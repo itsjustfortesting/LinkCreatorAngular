@@ -5,9 +5,9 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class LinkService {
   private linkList: Link[] = [
-    new Link('TRAVEL', 'http://ble.pl'),
-    new Link('TRAVEL', 'http://bleblabfsd.pl'),
-    new Link('HEALTH', 'http://zdrowotne.pl')
+    new Link('TRAVEL', 'Bezpieczne podróże', 'http://www.signal-iduna.pl/bpd?portal_code=<#portalCode#>&ag_symbol=<#agSymbol#>&tax_number=<#taxNumber#>'),
+    new Link('TRAVEL', 'Koszt imprezy turystycznej', 'http://www.signal-iduna.pl/kit?portal_code=<#portalCode#>&ag_symbol=<#agSymbol#>&tax_number=<#taxNumber#>'),
+    new Link('HEALTH', 'Moja Pełnia zdrowia', 'http://www.signal-iduna.pl/mpz?portal_code=<#portalCode#>&ag_symbol=<#agSymbol#>&tax_number=<#taxNumber#>')
   ];
   linkListUpdate = new Subject<Link[]>();
 
