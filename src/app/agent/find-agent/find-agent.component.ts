@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {AgentService} from '../agent.service';
 import {Agent} from '../agent.model';
 import {Router} from '@angular/router';
+import {LinkService} from '../../links/link.service';
 
 @Component({
   selector: 'app-find-agent',
@@ -13,7 +14,7 @@ export class FindAgentComponent implements OnInit {
   defaultIdType = 'ag';
   @ViewChild('findAgentForm') findAgentForm: NgForm;
 
-  constructor(private agentService: AgentService, private router: Router) {
+  constructor(private agentService: AgentService, private linkService: LinkService, private router: Router) {
   }
 
   ngOnInit() {

@@ -1,6 +1,9 @@
 <div class="nav-scroller py-1 mb-2">
   <nav class="nav d-flex">
-    <a class="p-2 text-muted" [routerLink]="['/find-agent']" routerLinkActive="linkActive">Find agent</a>
-    <a class="p-2 text-muted" [routerLink]="['/agent-info']" routerLinkActive="linkActive">Agent's info & links</a>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-secondary" [routerLink]="['/find-agent']" routerLinkActive="linkActive">Find agent</button>
+      <button class="btn btn-sm btn-secondary" [routerLink]="['/agent-info']" routerLinkActive="linkActive">Agent's info & links</button>
+      <button class="btn btn-sm btn-secondary" [routerLink]="['/export']" routerLinkActive="linkActive">Export links</button>
+    </div>
   </nav>
 </div>
