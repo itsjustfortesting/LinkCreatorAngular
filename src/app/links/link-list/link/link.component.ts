@@ -1,9 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {LinkService} from '../../link.service';
 import {Link} from '../../link.model';
 import {AgentService} from '../../../agent/agent.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Agent} from '../../../agent/agent.model';
+import {NgModel} from '@angular/forms';
 
 @Component({
   selector: 'app-link',
@@ -15,6 +16,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   link: Link;
   portalCodeChangedSubscription: Subscription;
   finalUrl = '';
+  @ViewChild('linkCheckBox') linkCheckBox: NgModel;
 
   constructor(private linkService: LinkService, private agentService: AgentService) {
   }
@@ -39,5 +41,13 @@ export class LinkComponent implements OnInit, OnDestroy {
     finalUrl = finalUrl.replace('<#agSymbol#>', agent.agSymbol);
     finalUrl = finalUrl.replace('<#taxNumber#>', agent.taxNumber.toString());
     return finalUrl;
+  }
+
+  onLinkCheckbox() {
+    if (this.linkCheckBox.value === true) {
+      this.linkService.addSelectedLink(this.link);
+    } else {
+      this.linkService.removeSelectedLink(this.link);
+    }
   }
 }
