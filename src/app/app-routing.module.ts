@@ -3,14 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {FindAgentComponent} from './agent/find-agent/find-agent.component';
 import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
-import {ExportLinksComponent} from './links/export-links/export-links.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/find-agent', pathMatch: 'full'},
   {path: 'find-agent', component: FindAgentComponent},
   {path: 'agent-info', component: AgentInfoComponent},
   {path: 'not-found', component: PageNotFoundComponent},
-  {path: 'export', component: ExportLinksComponent},
   {path: '**', redirectTo: '/not-found'}
 ];
 

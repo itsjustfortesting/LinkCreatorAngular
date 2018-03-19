@@ -31,7 +31,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
         portalCodeNow !== '' ? this.portalCodeNotNull = true : this.portalCodeNotNull = false;
       }
     );
-    this.linkService.selectedLinksUpdate.subscribe(
+    this.selectedLinksSubscription = this.linkService.selectedLinksUpdate.subscribe(
       (link: Link[]) => {
         link.length > 0 ? this.selectedLinksNotEmpty = true : this.selectedLinksNotEmpty = false;
       }
