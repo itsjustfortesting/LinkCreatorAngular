@@ -51,8 +51,10 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
   }
 
   onReset() {
+    this.agentSubscription.unsubscribe();
+    this.selectedLinksSubscription.unsubscribe();
+    this.linksService.clearSelectedLinks();
     this.router.navigate(['/find-agent']);
     this.agentService.setActiveAgent(null);
-    this.linksService.clearSelectedLinks();
   }
 }

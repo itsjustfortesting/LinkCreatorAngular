@@ -41,7 +41,7 @@ export class LinkService {
   }
 
   clearSelectedLinks() {
-    this.selectedLinks = null;
+    this.selectedLinks = [];
     this.selectedLinksUpdate.next(this.selectedLinks.slice());
   }
 
