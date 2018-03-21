@@ -10,7 +10,6 @@ import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
 import {FormsModule} from '@angular/forms';
 import {AgentService} from './agent/agent.service';
 import {LinkListComponent} from './links/link-list/link-list.component';
-import {LinkComponent} from './links/link-list/link/link.component';
 import {LinkService} from './links/link.service';
 import {LinkExportComponent} from './links/link-export/link-export.component';
 
@@ -20,7 +19,6 @@ import {LinkExportComponent} from './links/link-export/link-export.component';
     FindAgentComponent,
     AgentInfoComponent,
     LinkListComponent,
-    LinkComponent,
     LinkExportComponent
   ],
   imports: [

@@ -46,13 +46,14 @@
                      (input)="onChangePortalCode(portalCodeValue)">
             </p>
           </div>
-          <input type="button" class="btn btn-danger mt-2" value="Reset and find new agent" (click)="onReset()">
+          <input type="submit" class="btn btn-primary mt-2" value="Show links">
+          <input type="button" class="btn btn-danger mt-2" value="Find new agent" (click)="onReset()">
         </div>
       </div>
     </div>
   </form>
-  <app-link-list *ngIf="agent != null && portalCodeValue !== ''"></app-link-list>
-  <app-link-export *ngIf="agent != null && selectedLinks != null"></app-link-export>
+  <!--<app-link-list *ngIf="agent != null && portalCodeValue !== ''"></app-link-list>-->
+  <!--<app-link-export *ngIf="agent != null && selectedLinks != null"></app-link-export>-->
 </ng-template>
 
 

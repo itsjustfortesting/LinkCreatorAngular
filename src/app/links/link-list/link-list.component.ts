@@ -1,7 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Link} from '../link.model';
 import {LinkService} from '../link.service';
-import {Subscription} from 'rxjs/Subscription';
 import {AgentService} from '../../agent/agent.service';
 
 @Component({
@@ -10,23 +8,23 @@ import {AgentService} from '../../agent/agent.service';
   styleUrls: ['./link-list.component.css']
 })
 export class LinkListComponent implements OnInit, OnDestroy {
-  linkList: Link[];
-  linkListSubscription: Subscription;
+  // linkList: Link[];
+  // linkListSubscription: Subscription;
 
   constructor(private linkService: LinkService, private agentService: AgentService) {
   }
 
   ngOnInit() {
-    this.linkListSubscription = this.linkService.linkListUpdate.subscribe(
-      (link: Link[]) => {
-        this.linkList = link;
-      }
-    );
-    this.linkList = this.linkService.getLinkList();
+    // this.linkListSubscription = this.linkService.linkListUpdate.subscribe(
+    //   (link: Link[]) => {
+    //     this.linkList = link;
+    //   }
+    // );
+    // this.linkList = this.linkService.getLinkList();
   }
 
   ngOnDestroy() {
-    this.linkListSubscription.unsubscribe();
+    // this.linkListSubscription.unsubscribe();
   }
 
 }

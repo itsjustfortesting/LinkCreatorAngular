@@ -10,8 +10,8 @@ export class LinkService {
     new Link('HEALTH', 'Moja Pełnia zdrowia', 'http://www.signal-iduna.pl/mpz?portal_code=<#portalCode#>&ag_symbol=<#agSymbol#>&tax_number=<#taxNumber#>')
   ];
   linkListUpdate = new Subject<Link[]>();
-  private selectedLinks: Link[] = [];
-  selectedLinksUpdate = new Subject<Link[]>();
+  // private selectedLinks: Link[] = [];
+  // selectedLinksUpdate = new Subject<Link[]>();
 
   getLinkList() {
     return this.linkList.slice();
@@ -26,23 +26,23 @@ export class LinkService {
     this.linkListUpdate.next(this.linkList.slice());
   }
 
-  addSelectedLink(link: Link) {
-    this.selectedLinks.push(link);
-    this.selectedLinksUpdate.next(this.selectedLinks.slice());
-  }
-
-  removeSelectedLink(link: Link) {
-    this.selectedLinks.splice(this.selectedLinks.lastIndexOf(link), 1);
-    this.selectedLinksUpdate.next(this.selectedLinks.slice());
-  }
-
-  getSelectedLinks() {
-    return this.selectedLinks.slice();
-  }
-
-  clearSelectedLinks() {
-    this.selectedLinks = [];
-    this.selectedLinksUpdate.next(this.selectedLinks.slice());
-  }
+  // addSelectedLink(link: Link) {
+  //   this.selectedLinks.push(link);
+  //   this.selectedLinksUpdate.next(this.selectedLinks.slice());
+  // }
+  //
+  // removeSelectedLink(link: Link) {
+  //   this.selectedLinks.splice(this.selectedLinks.lastIndexOf(link), 1);
+  //   this.selectedLinksUpdate.next(this.selectedLinks.slice());
+  // }
+  //
+  // getSelectedLinks() {
+  //   return this.selectedLinks.slice();
+  // }
+  //
+  // clearSelectedLinks() {
+  //   this.selectedLinks = [];
+  //   this.selectedLinksUpdate.next(this.selectedLinks.slice());
+  // }
 
 }
