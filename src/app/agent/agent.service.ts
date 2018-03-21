@@ -7,9 +7,6 @@ export class AgentService {
   public agentChanged = new Subject<Agent>();
   private activeAgent: Agent;
 
-  public portalCodeChanged = new Subject<string>();
-  private portalCodeNow = '';
-
   getActiveAgent(): Agent {
     return this.activeAgent;
   }
@@ -17,10 +14,5 @@ export class AgentService {
   setActiveAgent(value: Agent) {
     this.activeAgent = value;
     this.agentChanged.next(this.activeAgent);
-  }
-
-  setPortalCodeNow(value: string) {
-    this.portalCodeNow = value;
-    this.portalCodeChanged.next(this.portalCodeNow);
   }
 }

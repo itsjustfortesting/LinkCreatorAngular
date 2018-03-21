@@ -14,9 +14,9 @@
   </div>
 </ng-template>
 <ng-template [ngIf]="agent != null">
-  <form (submit)="ble()" #agentsInfoForm="ngForm">
+  <form (submit)="onAgentsInfoFormSubmit()" #agentsInfoForm="ngForm">
     <div class="row justify-content-center">
-      <div class="col-sm-5">
+      <div class="col-sm-4">
         <div class="my-3 p-3 bg-white rounded box-shadow border">
           <h4 class="border-bottom border-gray pb-2 mb-0">Agent's info</h4>
           <div class="media text-muted pt-3">
@@ -39,20 +39,20 @@
           </div>
           <div class="media text-muted pt-1">
             <p class="media-body mb-0 small lh-125">
-              <strong class="d-block text-gray-dark">Portal code:</strong>
-              <input class="form-control" type="text" name="portalCode" id="portalCode"
-                     [(ngModel)]="portalCodeValue" required #portalCode="ngModel"
-                     [ngClass]="{'error': !portalCode.valid && portalCode.touched}" placeholder="field is required"
-                     (input)="onChangePortalCode(portalCodeValue)">
+              <strong class="d-block text-gray-dark">Portal code (WWW address):</strong>
+              <input class="form-control" type="text" name="portalCode" id="portalCode" [ngModel]="portalCodeValue"
+                     required #portalCode="ngModel" [ngClass]="{'error': !portalCode.valid && portalCode.touched}" placeholder="field is required">
             </p>
           </div>
-          <input type="submit" class="btn btn-primary mt-2" value="Show links">
+          <input type="submit" class="btn btn-primary mt-2" value="Show links" [disabled]="!agentsInfoForm.valid">
           <input type="button" class="btn btn-danger mt-2" value="Find new agent" (click)="onReset()">
         </div>
       </div>
+      <div class="col-sm-8" *ngIf="showLinks">
+        <app-link-list *ngIf="showLinks"></app-link-list>
+      </div>
     </div>
   </form>
-  <!--<app-link-list *ngIf="agent != null && portalCodeValue !== ''"></app-link-list>-->
   <!--<app-link-export *ngIf="agent != null && selectedLinks != null"></app-link-export>-->
 </ng-template>
 

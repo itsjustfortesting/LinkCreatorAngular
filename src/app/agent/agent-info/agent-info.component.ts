@@ -14,13 +14,13 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
   agent: Agent;
   agentSubscription: Subscription;
   portalCodeValue = '';
-  // selectedLinksSubscription: Subscription;
-  // selectedLinks: Link[];
+  showLinks = false;
 
   constructor(private agentService: AgentService, private linksService: LinkService, private router: Router) {
   }
 
   ngOnInit() {
+    // Subscribe and get active agent
     this.agentSubscription = this.agentService.agentChanged.subscribe(
       (agent: Agent) => {
         this.agent = agent;
@@ -28,32 +28,24 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
       }
     );
     this.agent = this.agentService.getActiveAgent();
+
+    // Get portal code value only if agent is selected
     if (this.agentService.getActiveAgent() != null) {
       this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
     }
-
-    // this.selectedLinksSubscription = this.linksService.selectedLinksUpdate.subscribe(
-    //   (links: Link[]) => {
-    //     this.selectedLinks = links;
-    //   }
-    // );
-    // this.selectedLinks = this.linksService.getSelectedLinks();
   }
 
-  ngOnDestroy() {
-    this.agentSubscription.unsubscribe();
-    // this.selectedLinksSubscription.unsubscribe();
-  }
-
-  onChangePortalCode(value: string) {
-    this.agentService.setPortalCodeNow(value);
+  onAgentsInfoFormSubmit() {
+    this.showLinks = true;
   }
 
   onReset() {
     this.agentSubscription.unsubscribe();
-    // this.selectedLinksSubscription.unsubscribe();
-    // this.linksService.clearSelectedLinks();
     this.router.navigate(['/find-agent']);
     this.agentService.setActiveAgent(null);
+  }
+
+  ngOnDestroy() {
+    this.agentSubscription.unsubscribe();
   }
 }
