@@ -51,7 +51,8 @@
       </div>
     </div>
   </form>
-  <app-link-list *ngIf="agent != null"></app-link-list>
+  <app-link-list *ngIf="agent != null && portalCodeValue !== ''"></app-link-list>
+  <app-link-export *ngIf="agent != null && selectedLinks != null"></app-link-export>
 </ng-template>
 
 

@@ -44,10 +44,11 @@ export class LinkComponent implements OnInit, OnDestroy {
   }
 
   onLinkCheckbox() {
+    const linkToExport = new Link(this.link.lob, this.link.variant, this.finalUrl);
     if (this.linkCheckBox.value === true) {
-      this.linkService.addSelectedLink(this.link);
+      this.linkService.addSelectedLink(linkToExport);
     } else {
-      this.linkService.removeSelectedLink(this.link);
+      this.linkService.removeSelectedLink(linkToExport);
     }
   }
 }

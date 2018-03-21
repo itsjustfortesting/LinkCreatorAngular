@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+  <div class="col-sm-12">
+    <div class="my-3 p-3 bg-white rounded box-shadow border">
+      <h4 class="border-bottom border-gray pb-2 mb-0">Export</h4>
+      <ul>
+        <li *ngFor="let link of selectedLinks">
+          <b>{{link.variant}}:</b><br>
+          <i>{{link.url}}</i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

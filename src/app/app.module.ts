@@ -12,6 +12,7 @@ import {AgentService} from './agent/agent.service';
 import {LinkListComponent} from './links/link-list/link-list.component';
 import {LinkComponent} from './links/link-list/link/link.component';
 import {LinkService} from './links/link.service';
+import {LinkExportComponent} from './links/link-export/link-export.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {LinkService} from './links/link.service';
     FindAgentComponent,
     AgentInfoComponent,
     LinkListComponent,
-    LinkComponent
+    LinkComponent,
+    LinkExportComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {Agent} from '../agent.model';
 import {Subscription} from 'rxjs/Subscription';
 import {LinkService} from '../../links/link.service';
 import {Router} from '@angular/router';
+import {Link} from '../../links/link.model';
 
 @Component({
   selector: 'app-agent-info',
@@ -14,8 +15,10 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
   agent: Agent;
   agentSubscription: Subscription;
   portalCodeValue = '';
+  selectedLinksSubscription: Subscription;
+  selectedLinks: Link[];
 
-  constructor(private agentService: AgentService, private linkService: LinkService, private router: Router) {
+  constructor(private agentService: AgentService, private linksService: LinkService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,10 +32,18 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
     if (this.agentService.getActiveAgent() != null) {
       this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
     }
+
+    this.selectedLinksSubscription = this.linksService.selectedLinksUpdate.subscribe(
+      (links: Link[]) => {
+        this.selectedLinks = links;
+      }
+    );
+    this.selectedLinks = this.linksService.getSelectedLinks();
   }
 
   ngOnDestroy() {
     this.agentSubscription.unsubscribe();
+    this.selectedLinksSubscription.unsubscribe();
   }
 
   onChangePortalCode(value: string) {
@@ -42,6 +53,6 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
   onReset() {
     this.router.navigate(['/find-agent']);
     this.agentService.setActiveAgent(null);
-    this.linkService.clearSelectedLinks();
+    this.linksService.clearSelectedLinks();
   }
 }
