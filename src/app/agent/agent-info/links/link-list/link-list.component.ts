@@ -15,6 +15,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
   linkListSubscription: Subscription;
   dataLoaded = false;
   selectedLinks: boolean[] = [];
+  showSubmitButton = true;
   @ViewChild('linkListForm') linkListForm: NgForm;
 
   constructor(private linkService: LinkService, private sharedService: SharedService) {
@@ -43,6 +44,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
   }
 
   onLinkListSubmit() {
+    this.showSubmitButton = false;
     this.sharedService.setLinkExportComponent(true);
   }
 

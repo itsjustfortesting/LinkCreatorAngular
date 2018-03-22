@@ -21,7 +21,7 @@
           </tr>
           </tbody>
         </table>
-        <input type="submit" class="btn btn-primary" value="Generate links">
+        <input type="submit" class="btn btn-primary" value="Generate links" [hidden]="!showSubmitButton">
       </form>
       <!-- Loading info -->
       <ng-template #loadingInfo>
