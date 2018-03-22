@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AgentService} from '../agent.service';
 import {Agent} from '../agent.model';
 import {Subscription} from 'rxjs/Subscription';
-import {LinkService} from '../../links/link.service';
+import {LinkService} from './links/link.service';
 import {Router} from '@angular/router';
+import {SharedService} from '../../shared/shared.service';
 
 @Component({
   selector: 'app-agent-info',
@@ -13,10 +14,12 @@ import {Router} from '@angular/router';
 export class AgentInfoComponent implements OnInit, OnDestroy {
   agent: Agent;
   agentSubscription: Subscription;
+  showLinkExportComponentSubscription: Subscription;
+  showLinkExportComponent = false;
   portalCodeValue = '';
   showLinks = false;
 
-  constructor(private agentService: AgentService, private linksService: LinkService, private router: Router) {
+  constructor(private agentService: AgentService, private linksService: LinkService, private sharedService: SharedService, private router: Router) {
   }
 
   ngOnInit() {
@@ -33,6 +36,14 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
     if (this.agentService.getActiveAgent() != null) {
       this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
     }
+
+    // Subscribe to showLinkExportComponent value
+    this.showLinkExportComponentSubscription = this.sharedService.showLinkExportComponentChanged.subscribe(
+      (value: boolean) => {
+        this.showLinkExportComponent = value;
+      }
+    );
+    this.showLinkExportComponent = this.sharedService.getLinkExportComponent();
   }
 
   onAgentsInfoFormSubmit() {
@@ -47,5 +58,6 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.agentSubscription.unsubscribe();
+    this.showLinkExportComponentSubscription.unsubscribe();
   }
 }

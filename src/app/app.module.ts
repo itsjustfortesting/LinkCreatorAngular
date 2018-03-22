@@ -9,9 +9,10 @@ import {FindAgentComponent} from './agent/find-agent/find-agent.component';
 import {AgentInfoComponent} from './agent/agent-info/agent-info.component';
 import {FormsModule} from '@angular/forms';
 import {AgentService} from './agent/agent.service';
-import {LinkListComponent} from './links/link-list/link-list.component';
-import {LinkService} from './links/link.service';
-import {LinkExportComponent} from './links/link-export/link-export.component';
+import {LinkListComponent} from './agent/agent-info/links/link-list/link-list.component';
+import {LinkService} from './agent/agent-info/links/link.service';
+import {LinkExportComponent} from './agent/agent-info/links/link-export/link-export.component';
+import {SharedService} from './shared/shared.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {LinkExportComponent} from './links/link-export/link-export.component';
     FormsModule,
     CoreModule
   ],
-  providers: [AgentService, LinkService],
+  providers: [AgentService, LinkService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

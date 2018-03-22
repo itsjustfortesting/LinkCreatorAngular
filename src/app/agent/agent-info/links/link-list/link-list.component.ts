@@ -3,6 +3,7 @@ import {LinkService} from '../link.service';
 import {Link} from '../link.model';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
+import {SharedService} from '../../../../shared/shared.service';
 
 @Component({
   selector: 'app-link-list',
@@ -13,11 +14,10 @@ export class LinkListComponent implements OnInit, OnDestroy {
   linkList: Link[];
   linkListSubscription: Subscription;
   dataLoaded = false;
-  showExportComponent = false;
   selectedLinks: boolean[] = [];
   @ViewChild('linkListForm') linkListForm: NgForm;
 
-  constructor(private linkService: LinkService) {
+  constructor(private linkService: LinkService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
   }
 
   onLinkListSubmit() {
-    this.showExportComponent = true;
+    this.sharedService.setLinkExportComponent(true);
   }
 
   ngOnDestroy() {

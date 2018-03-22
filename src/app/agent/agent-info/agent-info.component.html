@@ -53,7 +53,11 @@
       </div>
     </div>
   </form>
-  <!--<app-link-export *ngIf="agent != null && selectedLinks != null"></app-link-export>-->
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+      <app-link-export *ngIf="showLinkExportComponent"></app-link-export>
+    </div>
+  </div>
 </ng-template>
 
 
