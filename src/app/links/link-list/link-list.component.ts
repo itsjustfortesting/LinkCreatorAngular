@@ -37,9 +37,8 @@ export class LinkListComponent implements OnInit, OnDestroy {
     this.linkService.getLinkList();
   }
 
-  onCheckboxValueChange(linkNo: number) {
-    // this.selectedLinks[linkNo].value =
-    // console.log(this.linkListForm.)
+  onCheckboxValueChange() {
+    console.log(this.selectedLinks);
   }
 
   onLinkListSubmit() {

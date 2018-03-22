@@ -16,7 +16,7 @@ export class LinkService {
   getLinkList() {
     setTimeout(() => {
       this.linkListUpdate.next(this.linkList.slice());
-    }, 1000);
+    }, 200);
   }
 
   getLink(index: number) {
