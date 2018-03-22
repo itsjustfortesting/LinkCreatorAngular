@@ -3,7 +3,6 @@ import {LinkService} from '../link.service';
 import {Link} from '../link.model';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
-import {Checkbox} from '../checkbox.model';
 
 @Component({
   selector: 'app-link-list',
@@ -15,7 +14,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
   linkListSubscription: Subscription;
   dataLoaded = false;
   showExportComponent = false;
-  selectedLinks: Checkbox[] = [];
+  selectedLinks: boolean[] = [];
   @ViewChild('linkListForm') linkListForm: NgForm;
 
   constructor(private linkService: LinkService) {
@@ -27,18 +26,20 @@ export class LinkListComponent implements OnInit, OnDestroy {
       (links: Link[]) => {
         this.linkList = links;
 
-        // Pre-populate link selection array
-        for (let i = 0; i < links.length; i++) {
-          this.selectedLinks.push(new Checkbox('checkbox' + i, false));
+        // Check if selection array is empty
+        if (this.linkService.getSelectedLinks().length === 0) {
+          // Pre-populate link selection array
+          for (let i = 0; i < links.length; i++) {
+            this.selectedLinks.push(false);
+          }
+          // Send array to service
+          this.linkService.connectSelectedLinksArrays(this.selectedLinks);
         }
+        // Show loaded links
         this.dataLoaded = true;
       }
     );
     this.linkService.getLinkList();
-  }
-
-  onCheckboxValueChange() {
-    console.log(this.selectedLinks);
   }
 
   onLinkListSubmit() {

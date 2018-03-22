@@ -14,8 +14,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let link of linkList; let i = index">
-            <th scope="row"><input class="form-control" type="checkbox" (change)="onCheckboxValueChange()"
-                                   [(ngModel)]="selectedLinks[i].value" [name]="'checkbox' + i" [id]="'checkbox' + i">
+            <th scope="row"><input class="form-control" type="checkbox" [(ngModel)]="selectedLinks[i]" [name]="'checkbox' + i" [id]="'checkbox' + i">
             </th>
             <td>{{link.lob}}</td>
             <td>{{link.variant}}</td>
