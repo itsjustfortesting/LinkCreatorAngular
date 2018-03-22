@@ -14,7 +14,9 @@ export class LinkService {
   // selectedLinksUpdate = new Subject<Link[]>();
 
   getLinkList() {
-    return this.linkList.slice();
+    setTimeout(() => {
+      this.linkListUpdate.next(this.linkList.slice());
+    }, 1000);
   }
 
   getLink(index: number) {
