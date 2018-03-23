@@ -14,7 +14,7 @@
     </div>
   </ng-template>
   <div class="col-sm-4">
-    <app-agent-info [ngIf]="agent != null"></app-agent-info>
+    <app-agent-info *ngIf="agent != null"></app-agent-info>
   </div>
   <div class="col-sm-8" *ngIf="showLinkListComponent">
     <app-link-list *ngIf="showLinkListComponent"></app-link-list>
