@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+  <ng-template [ngIf]="agent == null">
+    <div class="col-sm-5">
+      <div class="my-3 p-3 bg-white rounded box-shadow border">
+        <h4 class="border-bottom border-gray pb-2 mb-0">Agent's info</h4>
+        <div class="media text-muted pt-3">
+          <p class="media-body mb-0 small lh-125">
+            <strong class="d-block text-gray-dark">Error</strong>
+            You need to find agent first.
+          </p>
+        </div>
+        <button class="btn btn-secondary mt-2" [routerLink]="['/find-agent']">Back to start</button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="col-sm-4">
+    <app-agent-info [ngIf]="agent != null"></app-agent-info>
+  </div>
+  <div class="col-sm-8" *ngIf="showLinkListComponent">
+    <app-link-list *ngIf="showLinkListComponent"></app-link-list>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-sm-10">
+    <app-link-export *ngIf="showLinkExportComponent"></app-link-export>
+  </div>
+</div>

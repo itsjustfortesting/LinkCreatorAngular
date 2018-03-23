@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LinkService} from '../link.service';
+import {LinkService} from '../../shared/link.service';
 
 @Component({
   selector: 'app-link-export',

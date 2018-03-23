@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AgentService} from '../agent.service';
-import {Agent} from '../agent.model';
+import {AgentService} from '../../shared/agent.service';
+import {Agent} from '../../shared/agent.model';
 import {Subscription} from 'rxjs/Subscription';
-import {LinkService} from './links/link.service';
+import {LinkService} from '../../shared/link.service';
 import {Router} from '@angular/router';
 import {SharedService} from '../../shared/shared.service';
 

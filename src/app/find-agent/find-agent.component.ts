@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AgentService} from '../agent.service';
-import {Agent} from '../agent.model';
+import {AgentService} from '../shared/agent.service';
+import {Agent} from '../shared/agent.model';
 import {Router} from '@angular/router';
-import {LinkService} from '../agent-info/links/link.service';
+import {LinkService} from '../shared/link.service';
 
 @Component({
   selector: 'app-find-agent',
@@ -23,6 +23,6 @@ export class FindAgentComponent implements OnInit {
   onSubmitFindAgent() {
     const test: Agent = new Agent('Test agent', '123', 1798173277, 'www.test.pl');
     this.agentService.setActiveAgent(test);
-    this.router.navigate(['/agent-info']);
+    this.router.navigate(['/main']);
   }
 }

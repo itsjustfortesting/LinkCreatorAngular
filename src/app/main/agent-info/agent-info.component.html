@@ -1,0 +1,36 @@
+<div class="my-3 p-3 bg-white rounded box-shadow border">
+  <form (submit)="onAgentsInfoFormSubmit()" #agentsInfoForm="ngForm">
+    <h4 class="border-bottom border-gray pb-2 mb-0">Agent's info</h4>
+    <div class="media text-muted pt-3">
+      <p class="media-body mb-0 small lh-125">
+        <strong class="d-block text-gray-dark">Name:</strong>
+        {{agent.name}}
+      </p>
+    </div>
+    <div class="media text-muted pt-1">
+      <p class="media-body mb-0 small lh-125">
+        <strong class="d-block text-gray-dark">Agent symbol:</strong>
+        {{agent.agSymbol}}
+      </p>
+    </div>
+    <div class="media text-muted pt-1">
+      <p class="media-body mb-0 small lh-125">
+        <strong class="d-block text-gray-dark">Tax number:</strong>
+        {{agent.taxNumber}}
+      </p>
+    </div>
+    <div class="media text-muted pt-1">
+      <p class="media-body mb-0 small lh-125">
+        <strong class="d-block text-gray-dark">Portal code (WWW address):</strong>
+        <input class="form-control" type="text" name="portalCode" id="portalCode" [ngModel]="portalCodeValue"
+               required #portalCode="ngModel" [ngClass]="{'error': !portalCode.valid && portalCode.touched}"
+               placeholder="field is required">
+      </p>
+    </div>
+    <input type="submit" class="btn btn-primary mt-2" value="Show links" [disabled]="!agentsInfoForm.valid">
+    <input type="button" class="btn btn-danger mt-2" value="Find new agent" (click)="onReset()">
+  </form>
+</div>
+
+
+

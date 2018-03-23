@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {LinkService} from '../link.service';
-import {Link} from '../link.model';
+import {LinkService} from '../../shared/link.service';
+import {Link} from '../../shared/link.model';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
 import {SharedService} from '../../../../shared/shared.service';
