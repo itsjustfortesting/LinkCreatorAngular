@@ -4,7 +4,6 @@ import {Agent} from '../shared/agent.model';
 import {SharedService} from '../shared/shared.service';
 import {Subscription} from 'rxjs/Subscription';
 import {AgentService} from '../shared/agent.service';
-import {LinkService} from '../shared/link.service';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +17,7 @@ export class MainComponent implements OnInit, OnDestroy {
   showLinkListComponentSubscription: Subscription;
   showLinkListComponent = false;
 
-  constructor(private agentService: AgentService, private linksService: LinkService, private sharedService: SharedService, private router: Router) {
+  constructor(private agentService: AgentService, private sharedService: SharedService, private router: Router) {
   }
 
   ngOnInit() {
@@ -44,8 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.showLinkExportComponentSubscription.unsubscribe();
+    this.showLinkListComponentSubscription.unsubscribe();
     this.router.navigate(['/find-agent']);
-    this.agentService.setActiveAgent(null);
-    this.linksService.clearSelectedLinks();
   }
 }

@@ -3,7 +3,7 @@ import {LinkService} from '../../shared/link.service';
 import {Link} from '../../shared/link.model';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
-import {SharedService} from '../../../../shared/shared.service';
+import {SharedService} from '../../shared/shared.service';
 
 @Component({
   selector: 'app-link-list',
@@ -50,6 +50,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.linkListSubscription.unsubscribe();
+    this.linkService.clearSelectedLinks();
   }
 
 }

@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AgentService} from '../../shared/agent.service';
 import {Agent} from '../../shared/agent.model';
 import {Subscription} from 'rxjs/Subscription';
-import {LinkService} from '../../shared/link.service';
 import {Router} from '@angular/router';
 import {SharedService} from '../../shared/shared.service';
 
@@ -14,12 +13,9 @@ import {SharedService} from '../../shared/shared.service';
 export class AgentInfoComponent implements OnInit, OnDestroy {
   agent: Agent;
   agentSubscription: Subscription;
-  showLinkExportComponentSubscription: Subscription;
-  showLinkExportComponent = false;
   portalCodeValue = '';
-  showLinks = false;
 
-  constructor(private agentService: AgentService, private linksService: LinkService, private sharedService: SharedService, private router: Router) {
+  constructor(private agentService: AgentService, private sharedService: SharedService, private router: Router) {
   }
 
   ngOnInit() {
@@ -31,34 +27,19 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
       }
     );
     this.agent = this.agentService.getActiveAgent();
-
-    // Get portal code value only if agent is selected
-    if (this.agentService.getActiveAgent() != null) {
-      this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
-    }
-
-    // Subscribe to showLinkExportComponent value
-    this.showLinkExportComponentSubscription = this.sharedService.showLinkExportComponentChanged.subscribe(
-      (value: boolean) => {
-        this.showLinkExportComponent = value;
-      }
-    );
-    this.showLinkExportComponent = this.sharedService.getLinkExportComponent();
+    this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
   }
 
   onAgentsInfoFormSubmit() {
-    this.showLinks = true;
+    this.sharedService.setLinkListComponent(true);
   }
 
   onReset() {
-    this.agentSubscription.unsubscribe();
-    this.showLinkExportComponentSubscription.unsubscribe();
     this.router.navigate(['/find-agent']);
-    this.agentService.setActiveAgent(null);
-    this.linksService.clearSelectedLinks();
   }
 
   ngOnDestroy() {
-    this.onReset();
+    this.agentSubscription.unsubscribe();
+    this.agentService.setActiveAgent(null);
   }
 }

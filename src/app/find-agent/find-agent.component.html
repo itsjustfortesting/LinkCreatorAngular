@@ -3,7 +3,7 @@
     <div class="my-3 p-3 bg-white rounded box-shadow border">
       <form (submit)="onSubmitFindAgent()" #findAgentForm="ngForm">
         <h4 class="border-bottom border-gray pb-2 mb-0">Find agent</h4>
-        <div class="media text-muted pt-3 col-sm-7">
+        <div class="media text-muted pt-3 col-sm-10">
           <p class="media-body pb-0 mb-0 small lh-125">
             <strong class="d-block text-gray-dark"><label for="idtype">Search agent with:</label></strong>
             <select class="form-control" id="idtype" name="idtype" [ngModel]="defaultIdType" #idType="ngModel">
@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="media text-muted pt-2">
-          <p class="media-body pb-0 mb-0 small lh-125 col-sm-7">
+          <p class="media-body pb-0 mb-0 small lh-125 col-sm-10">
             <strong class="d-block text-gray-dark"><label for="idvalue">Value:</label></strong>
             <input type="text" name="idvalue" id="idvalue" class="form-control" placeholder="Ag symbol or tax number"
                    ngModel required #idValue="ngModel" [ngClass]="{'error': (!idValue.valid && idValue.touched)}"
@@ -24,7 +24,7 @@
           You can type only letters and numbers
         </p>
         <div class="media text-muted pt-4 col-sm-12">
-          <p class="media-body pb-0 mb-0 small lh-125 col-sm-7">
+          <p class="media-body pb-0 mb-0 small lh-125 col-sm-10">
             <!--<input type="submit" class="btn btn-primary" value="Search" [disabled]="!findAgentForm.valid"> TODO Fix that-->
             <input type="submit" class="btn btn-primary" value="Search">
             <input type="reset" class="btn btn-secondary" value="Clear">
