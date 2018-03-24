@@ -33,6 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.showLinkListComponentSubscription.unsubscribe();
+    this.sharedService.setLinkListComponent(false);
     this.router.navigate(['/find-agent']);
   }
 }

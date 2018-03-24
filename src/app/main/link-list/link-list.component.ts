@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {LinkService} from '../../shared/link.service';
-import {Link} from '../../shared/link.model';
+import {LinkService} from './link.service';
+import {Link} from './link.model';
 import {Subscription} from 'rxjs/Subscription';
 import {NgForm} from '@angular/forms';
-import {SharedService} from '../../shared/shared.service';
 
 @Component({
   selector: 'app-link-list',
@@ -16,9 +15,10 @@ export class LinkListComponent implements OnInit, OnDestroy {
   dataLoaded = false;
   selectedLinks: boolean[] = [];
   showSubmitButton = true;
+  showLinkPreview = false;
   @ViewChild('linkListForm') linkListForm: NgForm;
 
-  constructor(private linkService: LinkService, private sharedService: SharedService) {
+  constructor(private linkService: LinkService) {
   }
 
   ngOnInit() {
@@ -26,21 +26,29 @@ export class LinkListComponent implements OnInit, OnDestroy {
     this.linkListSubscription = this.linkService.linkListUpdate.subscribe(
       (links: Link[]) => {
         this.linkList = links;
-
-        // // Check if selection array is empty
-        // if (this.linkService.getSelectedLinks().length === 0) {
-        //   // Pre-populate link selection array
-        //   for (let i = 0; i < links.length; i++) {
-        //     this.selectedLinks.push(false);
-        //   }
-        //   // Send array to service
-        //   this.linkService.connectSelectedLinksArrays(this.selectedLinks);
-        // }
-        // Show loaded links
         this.dataLoaded = true;
+
+        // Prepopulate selected links array
+        for (let i = 0; i < this.linkList.length; i++) {
+          this.selectedLinks.push(false);
+        }
       }
     );
     this.linkService.getLinkList();
+  }
+
+  onCheckboxChange() {
+    console.log(this.isAnyLinkSelected());
+  }
+
+  isAnyLinkSelected() {
+    let isSelected = false;
+    for (const links of this.selectedLinks) {
+      if (links === true) {
+        isSelected = true;
+      }
+    }
+    return isSelected;
   }
 
   onLinkListSubmit() {
@@ -49,7 +57,6 @@ export class LinkListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.linkListSubscription.unsubscribe();
-    // this.linkService.clearSelectedLinks();
   }
 
 }

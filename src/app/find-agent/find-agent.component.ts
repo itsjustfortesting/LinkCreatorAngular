@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {AgentService} from '../shared/agent.service';
 import {Agent} from '../shared/agent.model';
 import {Router} from '@angular/router';
-import {LinkService} from '../shared/link.service';
+import {LinkService} from '../main/link-list/link.service';
 
 @Component({
   selector: 'app-find-agent',

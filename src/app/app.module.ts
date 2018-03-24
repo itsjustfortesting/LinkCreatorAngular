@@ -10,7 +10,7 @@ import {AgentInfoComponent} from './main/agent-info/agent-info.component';
 import {FormsModule} from '@angular/forms';
 import {AgentService} from './shared/agent.service';
 import {LinkListComponent} from './main/link-list/link-list.component';
-import {LinkService} from './shared/link.service';
+import {LinkService} from './main/link-list/link.service';
 import {SharedService} from './shared/shared.service';
 import {MainComponent} from './main/main.component';
 

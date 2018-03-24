@@ -22,9 +22,9 @@
     <div class="media text-muted pt-1">
       <p class="media-body mb-0 small lh-125">
         <strong class="d-block text-gray-dark">Portal code (WWW address):</strong>
-        <input class="form-control" type="text" name="portalCode" id="portalCode" [ngModel]="portalCodeValue"
+        <input class="form-control" type="text" name="portalCode" id="portalCode" [(ngModel)]="portalCodeValue"
                required #portalCode="ngModel" [ngClass]="{'error': !portalCode.valid && portalCode.touched}"
-               placeholder="field is required">
+               placeholder="field is required" (input)="onChangePortalCodeValue()">
       </p>
     </div>
     <input type="submit" class="btn btn-primary mt-2" value="Show links" [disabled]="!agentsInfoForm.valid">

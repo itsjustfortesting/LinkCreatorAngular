@@ -30,6 +30,10 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
     this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
   }
 
+  onChangePortalCodeValue() {
+    this.agentService.setPortalCodeValue(this.portalCodeValue);
+  }
+
   onAgentsInfoFormSubmit() {
     this.sharedService.setLinkListComponent(true);
   }

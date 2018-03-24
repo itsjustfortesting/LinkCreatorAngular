@@ -4,8 +4,11 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class AgentService {
-  public agentChanged = new Subject<Agent>();
   private activeAgent: Agent;
+  public agentChanged = new Subject<Agent>();
+  private portalCodeValue: string;
+  public portalCodeValueChanged = new Subject<string>();
+
 
   getActiveAgent(): Agent {
     return this.activeAgent;
@@ -14,5 +17,14 @@ export class AgentService {
   setActiveAgent(value: Agent) {
     this.activeAgent = value;
     this.agentChanged.next(this.activeAgent);
+  }
+
+  getPortalCodeValue() {
+    return this.portalCodeValue;
+  }
+
+  setPortalCodeValue(portalCode: string) {
+    this.portalCodeValue = portalCode;
+    this.portalCodeValueChanged.next(this.portalCodeValue);
   }
 }
