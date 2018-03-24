@@ -11,7 +11,6 @@ import {FormsModule} from '@angular/forms';
 import {AgentService} from './shared/agent.service';
 import {LinkListComponent} from './main/link-list/link-list.component';
 import {LinkService} from './shared/link.service';
-import {LinkExportComponent} from './main/link-export/link-export.component';
 import {SharedService} from './shared/shared.service';
 import {MainComponent} from './main/main.component';
 
@@ -22,7 +21,6 @@ import {MainComponent} from './main/main.component';
     FindAgentComponent,
     AgentInfoComponent,
     LinkListComponent,
-    LinkExportComponent
   ],
   imports: [
     BrowserModule,

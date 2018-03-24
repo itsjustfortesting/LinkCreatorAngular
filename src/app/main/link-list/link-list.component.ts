@@ -27,15 +27,15 @@ export class LinkListComponent implements OnInit, OnDestroy {
       (links: Link[]) => {
         this.linkList = links;
 
-        // Check if selection array is empty
-        if (this.linkService.getSelectedLinks().length === 0) {
-          // Pre-populate link selection array
-          for (let i = 0; i < links.length; i++) {
-            this.selectedLinks.push(false);
-          }
-          // Send array to service
-          this.linkService.connectSelectedLinksArrays(this.selectedLinks);
-        }
+        // // Check if selection array is empty
+        // if (this.linkService.getSelectedLinks().length === 0) {
+        //   // Pre-populate link selection array
+        //   for (let i = 0; i < links.length; i++) {
+        //     this.selectedLinks.push(false);
+        //   }
+        //   // Send array to service
+        //   this.linkService.connectSelectedLinksArrays(this.selectedLinks);
+        // }
         // Show loaded links
         this.dataLoaded = true;
       }
@@ -45,12 +45,11 @@ export class LinkListComponent implements OnInit, OnDestroy {
 
   onLinkListSubmit() {
     this.showSubmitButton = false;
-    this.sharedService.setLinkExportComponent(true);
   }
 
   ngOnDestroy() {
     this.linkListSubscription.unsubscribe();
-    this.linkService.clearSelectedLinks();
+    // this.linkService.clearSelectedLinks();
   }
 
 }

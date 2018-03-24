@@ -10,8 +10,8 @@ export class LinkService {
     new Link('HEALTH', 'Moja Pełnia zdrowia', 'http://www.signal-iduna.pl/mpz?portal_code=<#portalCode#>&ag_symbol=<#agSymbol#>&tax_number=<#taxNumber#>')
   ];
   linkListUpdate = new Subject<Link[]>();
-  private selectedLinks: boolean[] = [];
-  selectedLinksUpdated = new Subject<boolean[]>();
+  // private selectedLinks: boolean[] = [];
+  // selectedLinksUpdated = new Subject<boolean[]>();
 
   getLinkList() {
     setTimeout(() => {
@@ -28,16 +28,16 @@ export class LinkService {
     this.linkListUpdate.next(this.linkList.slice());
   }
 
-  connectSelectedLinksArrays(links: boolean[]) {
-    this.selectedLinks = links;
-  }
-
-  getSelectedLinks() {
-    return this.selectedLinks.slice();
-  }
-
-  clearSelectedLinks() {
-    this.selectedLinks = [];
-  }
+  // connectSelectedLinksArrays(links: boolean[]) {
+  //   this.selectedLinks = links;
+  // }
+  //
+  // getSelectedLinks() {
+  //   return this.selectedLinks.slice();
+  // }
+  //
+  // clearSelectedLinks() {
+  //   this.selectedLinks = [];
+  // }
 
 }

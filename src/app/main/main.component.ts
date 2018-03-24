@@ -12,8 +12,6 @@ import {AgentService} from '../shared/agent.service';
 })
 export class MainComponent implements OnInit, OnDestroy {
   agent: Agent = null;
-  showLinkExportComponentSubscription: Subscription;
-  showLinkExportComponent = false;
   showLinkListComponentSubscription: Subscription;
   showLinkListComponent = false;
 
@@ -23,14 +21,6 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Get active agent
     this.agent = this.agentService.getActiveAgent();
-
-    // Subscribe to showLinkExportComponent value
-    this.showLinkExportComponentSubscription = this.sharedService.showLinkExportComponentChanged.subscribe(
-      (value: boolean) => {
-        this.showLinkExportComponent = value;
-      }
-    );
-    this.showLinkExportComponent = this.sharedService.getLinkExportComponent();
 
     // Subscribe to showLinkListComponent value
     this.showLinkListComponentSubscription = this.sharedService.showLinkListComponentChanged.subscribe(
@@ -42,7 +32,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.showLinkExportComponentSubscription.unsubscribe();
     this.showLinkListComponentSubscription.unsubscribe();
     this.router.navigate(['/find-agent']);
   }
