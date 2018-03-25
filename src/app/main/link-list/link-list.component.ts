@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LinkService} from './link.service';
 import {Link} from './link.model';
 import {Subscription} from 'rxjs/Subscription';
-import {NgForm} from '@angular/forms';
+import {ExportLink} from './exportLink.model';
+import {AgentService} from '../../shared/agent.service';
 
 @Component({
   selector: 'app-link-list',
@@ -13,12 +14,13 @@ export class LinkListComponent implements OnInit, OnDestroy {
   linkList: Link[];
   linkListSubscription: Subscription;
   dataLoaded = false;
-  selectedLinks: boolean[] = [];
   showSubmitButton = true;
   showLinkPreview = false;
-  @ViewChild('linkListForm') linkListForm: NgForm;
+  exportLinkList: ExportLink[] = [];
+  portalCodeValueChangedSubscription: Subscription;
+  portalCodeValue = '';
 
-  constructor(private linkService: LinkService) {
+  constructor(private linkService: LinkService, private agentService: AgentService) {
   }
 
   ngOnInit() {
@@ -27,28 +29,33 @@ export class LinkListComponent implements OnInit, OnDestroy {
       (links: Link[]) => {
         this.linkList = links;
         this.dataLoaded = true;
-
-        // Prepopulate selected links array
-        for (let i = 0; i < this.linkList.length; i++) {
-          this.selectedLinks.push(false);
-        }
       }
     );
     this.linkService.getLinkList();
+
+    // Subscribe to change of portal code
+    this.portalCodeValueChangedSubscription = this.agentService.portalCodeValueChanged.subscribe(
+      (portalCode: string) => {
+        this.portalCodeValue = portalCode;
+        this.onCheckboxChange();
+      }
+    );
   }
 
   onCheckboxChange() {
-    console.log(this.isAnyLinkSelected());
-  }
+    this.showLinkPreview = false;
+    this.exportLinkList.splice(0, this.exportLinkList.length);
 
-  isAnyLinkSelected() {
-    let isSelected = false;
-    for (const links of this.selectedLinks) {
-      if (links === true) {
-        isSelected = true;
+    for (let link of this.linkList) {
+      if (link.selected === true) {
+        this.showLinkPreview = true;
+        let url = link.url;
+        url = url.replace('<#portalCode#>', this.portalCodeValue);
+        url = url.replace('<#agSymbol#>', this.agentService.getActiveAgent().agSymbol);
+        url = url.replace('<#taxNumber#>', this.agentService.getActiveAgent().taxNumber.toString());
+        this.exportLinkList.push(new ExportLink(link.variant, url));
       }
     }
-    return isSelected;
   }
 
   onLinkListSubmit() {
@@ -57,6 +64,7 @@ export class LinkListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.linkListSubscription.unsubscribe();
+    this.exportLinkList.splice(0, this.exportLinkList.length);
   }
 
 }

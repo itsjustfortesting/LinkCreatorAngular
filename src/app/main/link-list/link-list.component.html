@@ -14,14 +14,14 @@
           </thead>
           <tbody>
           <tr *ngFor="let link of linkList; let i = index">
-            <th scope="row"><input class="form-control" type="checkbox" [(ngModel)]="selectedLinks[i]" [name]="'checkbox' + i" [id]="'checkbox' + i" (change)="onCheckboxChange()">
+            <th scope="row"><input class="form-control" type="checkbox" [(ngModel)]="link.selected" [name]="'checkbox' + i" [id]="'checkbox' + i" (change)="onCheckboxChange()">
             </th>
             <td>{{link.lob}}</td>
             <td>{{link.variant}}</td>
           </tr>
           </tbody>
         </table>
-        <input type="submit" class="btn btn-primary" value="Copy links to clipboard" [hidden]="!showSubmitButton">
+        <input type="submit" class="btn btn-primary" value="Copy links to clipboard" [disabled]="!showLinkPreview">
       </form>
       <!-- Loading info -->
       <ng-template #loadingInfo>
@@ -37,7 +37,12 @@
     <div class="col-sm-12">
       <div class="my-3 p-3 bg-white rounded box-shadow border">
         <h4 class="pb-4 mb-0">Link preview</h4>
-        fdfd
+        <ul>
+          <li *ngFor="let link of exportLinkList">
+            {{link.linkName}}:<br>
+            {{link.url}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>

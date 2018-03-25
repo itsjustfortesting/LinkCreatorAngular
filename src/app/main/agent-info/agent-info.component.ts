@@ -28,6 +28,8 @@ export class AgentInfoComponent implements OnInit, OnDestroy {
     );
     this.agent = this.agentService.getActiveAgent();
     this.portalCodeValue = this.agentService.getActiveAgent().portalCode;
+
+    this.agentService.setPortalCodeValue(this.portalCodeValue);
   }
 
   onChangePortalCodeValue() {
