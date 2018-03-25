@@ -40,13 +40,14 @@ export class LinkListComponent implements OnInit, OnDestroy {
         this.onCheckboxChange();
       }
     );
+    this.portalCodeValue = this.agentService.getPortalCodeValue();
   }
 
   onCheckboxChange() {
     this.showLinkPreview = false;
-    this.exportLinkList.splice(0, this.exportLinkList.length);
+    this.exportLinkList = [];
 
-    for (let link of this.linkList) {
+    for (const link of this.linkList) {
       if (link.selected === true) {
         this.showLinkPreview = true;
         let url = link.url;
@@ -64,7 +65,8 @@ export class LinkListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.linkListSubscription.unsubscribe();
-    this.exportLinkList.splice(0, this.exportLinkList.length);
+    this.portalCodeValueChangedSubscription.unsubscribe();
+    this.exportLinkList = [];
   }
 
 }

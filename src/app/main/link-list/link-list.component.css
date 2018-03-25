@@ -6,3 +6,7 @@ input[type="checkbox"] {
 .table > tbody > tr > th {
   vertical-align: middle;
 }
+
+#preview {
+  font-size: small;
+}
