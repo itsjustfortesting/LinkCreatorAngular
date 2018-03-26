@@ -13,6 +13,7 @@ import {LinkListComponent} from './main/link-list/link-list.component';
 import {LinkService} from './main/link-list/link.service';
 import {SharedService} from './shared/shared.service';
 import {MainComponent} from './main/main.component';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import {MainComponent} from './main/main.component';
     MainComponent,
     FindAgentComponent,
     AgentInfoComponent,
-    LinkListComponent,
+    LinkListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CoreModule
+    CoreModule,
+    AdminModule
   ],
   providers: [AgentService, LinkService, SharedService],
   bootstrap: [AppComponent]
